@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @entry.name %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @entry.project %>
+</p>
+
+<p>
+  <strong>Hours:</strong>
+  <%= @entry.hours %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @entry.work_date %>
+</p>
+
+<%= link_to 'Edit', edit_entry_path(@entry) %>
+<%= link_to 'New Entry', new_entry_path %>
+<%= link_to 'List', entries_path %>

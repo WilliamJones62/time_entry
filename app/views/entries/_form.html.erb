@@ -1,0 +1,37 @@
+<%= form_with(model: entry, local: true) do |form| %>
+  <% if entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+
+      <ul>
+      <% entry.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.select :name, @name, {}, {:value => params[:name]} %>
+  </div>
+
+  <div class="field">
+    <%= form.label :project %>
+    <%= form.select :project, @project, {}, {:value => params[:project]} %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hours %>
+    <%= form.number_field :hours, id: :entry_hours, :step => 0.5 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :work_date %>
+    <%= form.date_field :work_date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

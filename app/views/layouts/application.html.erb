@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>TimeEntry</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +10,125 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div style="position: fixed; top: 0px; width: 100%; height: 8em; background-color: white; z-index: 100;">
+      <%= render 'layouts/header' %>
+    </div>
+    <div style="margin-top: 8.5em;">
+      <%= yield %>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="/assets/fxheader1.js"></script>
+    <script src="/assets/myjavascript.js"></script>
+    <script>
+      function getData(data)
+      {
+        var p1 = data.replace('[', "");
+        var p2 = p1.replace(']', "");
+        p1 = p2.replace(/,/g, "");
+        var data_array = p1.split(" ");
+        data_array.shift();
+        data_array.pop();
+        return data_array;
+      }
+
+      function buildTable() {
+        $('#projtab').remove();
+        var nums = document.getElementById("projnum").innerHTML;
+        var projnum = getData(nums);
+        var names = document.getElementById("projname").innerHTML;
+        var projname = getData(names);
+        var hours = document.getElementById("projhour").innerHTML;
+        var projhour = getData(hours);
+        var pickaproject = document.getElementById("pickaproject");
+        var projsel = pickaproject.options[pickaproject.selectedIndex].text;
+        var numname = [
+          '2018-001 Improve Order Cancelltion Process in eCom',
+          '2018-002 Streamline Order Import',
+          '2018-003 Need the ability to add lines to existing customer orders',
+          '2018-004 Pallet Traceabiiity',
+          '2018-005 Increase Inventory Accuracy',
+          '2018-006 Packing Efficiency',
+          '2018-007 Pick to Ship',
+          '2018-008 Integate Roandet into E21 at the SKU Level',
+          '2018-009 Problem Log',
+          '2018-010 B2B Website',
+          '2018-011 CRM - Food Service and Retail',
+          '2018-012 Implement Financial Reporting across the two Companies',
+          '2018-013 Customer Portal',
+          '2018-014 MRP',
+          '2018-015 Demand Purchasing System',
+          '2018-016 Dashboard with Purchasing Metrics and Analytics',
+          '2018-017 Dashboard with Product Metric and Analytics',
+          '2018-018 Dashboard with Sales Metric and Analytics',
+          '2018-019 Dashboard with Collection Metric and Analytics',
+          '2018-020 Dashboard with Retail Metric and Analytics',
+          '2018-021 Upselling Report',
+          '2018-022 ',
+          '2018-023 Auto Steal',
+          "2018-024 Implement Samples under customer's account",
+          '2018-025 Invoice Printing for Fedex',
+          '2018-026 Sample Orders'
+        ]
+        var projecttable = document.getElementById('projecttable');
+        var tbl = document.createElement('table');
+        tbl.setAttribute("id","projtab");
+        tbl.setAttribute("class","mytable");
+        var row = document.createElement('tr');
+        var headerCell = document.createElement("th");
+        var cellText = document.createTextNode('Project');
+        headerCell.appendChild(cellText);
+        row.appendChild(headerCell);
+        var headerCell = document.createElement("th");
+        var cellText = document.createTextNode('Name');
+        headerCell.appendChild(cellText);
+        row.appendChild(headerCell);
+        var headerCell = document.createElement("th");
+        var cellText = document.createTextNode('Hours');
+        headerCell.appendChild(cellText);
+        row.appendChild(headerCell);
+        tbl.appendChild(row);
+        var length = projnum.length;
+        var holdtext = ' ';
+        var projx = 0;
+        if (projsel != "All") {
+          var numlength = numname.length;
+          for (var j = 0; j < numlength; j++) {
+            if (projsel == numname[j]) {
+              projx = j;
+              j = numlength++;
+            }
+          }
+        }
+        //Add the data rows.
+        for (var i = 0; i < length; i++) {
+          if (projsel == "All" || projx == projnum[i]) {
+            var row = document.createElement("tr");
+            var cell = document.createElement("td");
+            if (numname[projnum[i]] != holdtext) {
+              var cellText = document.createTextNode(numname[projnum[i]]);
+              holdtext = numname[projnum[i]];
+            }
+            else {
+              var cellText = document.createTextNode(' ');
+            }
+            cell.appendChild(cellText);
+            row.appendChild(cell);
+            var cell = document.createElement("td");
+            var cellText = document.createTextNode(projname[i].replace(/"/g, ''));
+            cell.appendChild(cellText);
+            row.appendChild(cell);
+            var cell = document.createElement("td");
+            var cellText = document.createTextNode(projhour[i]);
+            cell.appendChild(cellText);
+            row.appendChild(cell);
+            tbl.appendChild(row);
+          }
+        }
+        projecttable.appendChild(tbl);
+      }
+    </script>
   </body>
 </html>

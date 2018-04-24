@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Entries This Week</h2>
+<table class="mytable" class="display" cellspacing="0" >
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Project</th>
+      <th>Hours</th>
+      <th>Date</th>
+      <th>Show</th>
+      <th>Edit</th>
+      <th>Destroy</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @entries.each do |entry| %>
+      <tr>
+        <td><%= entry.name %></td>
+        <td><%= entry.project %></td>
+        <td><%= entry.hours %></td>
+        <td><%= entry.work_date %></td>
+        <td><%= link_to 'Show', entry %></td>
+        <td><%= link_to 'Edit', edit_entry_path(entry) %></td>
+        <td><%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Entry', new_entry_path %>
+<%= link_to 'Export', entries_transmit_path %>
+
+<h2>Summary By Project</h2>
+<p id= "projnum" hidden> <%= @projnum %> </p>
+<p id= "projname" hidden> <%= @projname %> </p>
+<p id= "projhour" hidden> <%= @projhour %> </p>
+<h3>Select A Project</h3>
+<select id="pickaproject" onchange="buildTable()">
+  <option value= "All">All</option>
+  <% @project.each do |p| %>
+  <option value=p><%= p %></option>
+  <% end %>
+</select>
+<br>
+
+<div id="projecttable" style="overflow:auto; height:200px">
+</div>

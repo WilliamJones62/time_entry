@@ -1,0 +1,15 @@
+<h1>Export Entries</h1>
+
+<h2>Enter date range:</h2>
+<%= form_tag entries_export_path, multipart: true do %>
+  <%= label_tag(:start_date, "Start date:") %>
+  <%= date_field_tag :start_date, Date.today %>
+  <%= label_tag(:end_date, "End date:") %>
+  <%= date_field_tag :end_date, Date.today %>
+  <%= submit_tag "Export" %>
+<% end %>
+<br>
+<br>
+
+<%= link_to 'List', entries_path %>
+<%= link_to 'New Export',entries_transmit_path %>

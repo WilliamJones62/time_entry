@@ -1,5 +1,7 @@
 {
   "name": "time_entry",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "openssl": "^1.1.0"
+  }
 }
