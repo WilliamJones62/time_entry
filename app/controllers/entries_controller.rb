@@ -7,7 +7,7 @@ class EntriesController < ApplicationController
     day_of_week = today.wday
     @start_of_week = today - (day_of_week * 60 * 60 * 24)
     @entries = Entry.where("created_at > ?", @start_of_week).all
-    name = ['abdulm', 'billj', 'danieleg', 'joellem', 'justinr', 'robb', 'seyio', 'sherwoodl']
+    name = ['abdulm', 'billj', 'christopherh', 'danieleg', 'joellem', 'josephs', 'justinr', 'robb', 'seyio', 'sherwoodl']
     @project = ['2018-001 Improve Order Cancelltion Process in eCom',
                 '2018-002 Streamline Order Import',
                 '2018-003 Need the ability to add lines to existing customer orders',
@@ -80,7 +80,7 @@ class EntriesController < ApplicationController
 
   # GET /entries/new
   def new
-    @name = ['abdulm', 'billj', 'danieleg', 'joellem', 'justinr', 'robb', 'seyio', 'sherwoodl']
+    @name = ['abdulm', 'billj', 'christopherh', 'danieleg', 'joellem', 'josephs', 'justinr', 'robb', 'seyio', 'sherwoodl']
     @project = ['2018-001 Improve Order Cancelltion Process in eCom',
                 '2018-002 Streamline Order Import',
                 '2018-003 Need the ability to add lines to existing customer orders',
@@ -115,7 +115,7 @@ class EntriesController < ApplicationController
 
   # GET /entries/1/edit
   def edit
-    @name = ['abdulm', 'billj', 'danieleg', 'joellem', 'justinr', 'robb', 'seyio', 'sherwoodl']
+    @name = ['abdulm', 'billj', 'christopherh', 'danieleg', 'joellem', 'josephs', 'justinr', 'robb', 'seyio', 'sherwoodl']
     @project = ['2018-001 Improve Order Cancelltion Process in eCom',
                 '2018-002 Streamline Order Import',
                 '2018-003 Need the ability to add lines to existing customer orders',
